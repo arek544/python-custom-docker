@@ -9,13 +9,11 @@ ENV PYTHONPATH="/work"
 WORKDIR "${PYTHONPATH}"
 
 # ZSH setup
-# Uses "git", "ssh-agent" and "history-substring-search" bundled plugins
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
+    -t robbyrussell \
     -p git \
     -p 'history-substring-search' \
-    -p zsh-autosuggestions \
-    -a 'bindkey "\$terminfo[kcuu1]" history-substring-search-up' \
-    -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
+    -p zsh-autosuggestions 
 
 # autosuggestions plugin to ZSH
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions \
